@@ -13,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v4.view.MenuItemCompat;
+import android.support.design.widget.TabLayout;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,6 +32,10 @@ public class MainActivity extends AppCompatActivity {
 
         ViewPager pager = (ViewPager) findViewById(R.id.pager);
         pager.setAdapter(pagerAdapter);
+
+        //Linking ViewPager with TabLayout
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(pager);
     }
 
     @Override
