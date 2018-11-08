@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.ShareActionProvider;
@@ -23,6 +24,12 @@ public class MainActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        //Linking SectionPagerAdapter with ViewPager
+        SectionPagerAdapter pagerAdapter = new SectionPagerAdapter(getSupportFragmentManager());
+
+        ViewPager pager = (ViewPager) findViewById(R.id.pager);
+        pager.setAdapter(pagerAdapter);
     }
 
     @Override
@@ -58,11 +65,13 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
     private class SectionPagerAdapter extends FragmentPagerAdapter {
 
-        SectionPagerAdapter(FragmentManager fm) {
+        public SectionPagerAdapter(FragmentManager fm) {
             super(fm);
         }
+
         @Override
         public int getCount() {
             return 4;
