@@ -30,6 +30,8 @@ public class OrderActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast toast = Toast.makeText(OrderActivity.this, "Undone!", Toast.LENGTH_SHORT);
+
+                toast.show();
             }
         });
 
