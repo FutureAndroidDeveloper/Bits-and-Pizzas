@@ -1,6 +1,7 @@
 package com.example.kirill.bitsandpizzas;
 
 import android.content.Intent;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -12,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v4.view.MenuItemCompat;
+import android.support.design.widget.TabLayout;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,6 +32,10 @@ public class MainActivity extends AppCompatActivity {
 
         ViewPager pager = (ViewPager) findViewById(R.id.pager);
         pager.setAdapter(pagerAdapter);
+
+        //Linking ViewPager with TabLayout
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(pager);
     }
 
     @Override
@@ -88,6 +94,23 @@ public class MainActivity extends AppCompatActivity {
                     return new PastaFragment();
                 case 3:
                     return new StoresFragment();
+            }
+
+            return null;
+        }
+
+        @Nullable
+        @Override
+        public CharSequence getPageTitle(int position) {
+            switch (position) {
+                case 0:
+                    return getResources().getString(R.string.home_tab);
+                case 1:
+                    return getResources().getText(R.string.pizza_tab);
+                case 2:
+                    return getResources().getText(R.string.pasta_tab);
+                case 3:
+                    return getResources().getText(R.string.store_tab);
             }
 
             return null;
