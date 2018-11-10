@@ -1,5 +1,6 @@
 package com.example.kirill.bitsandpizzas;
 
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 
 public class CaptionedImagesAdapter extends RecyclerView.Adapter<CaptionedImagesAdapter.ViewHolder> {
@@ -8,7 +9,12 @@ public class CaptionedImagesAdapter extends RecyclerView.Adapter<CaptionedImages
 
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
+        private CardView cardView;
 
+        ViewHolder(CardView v) {
+            super(v);
+            cardView = v;
+        }
     }
 
 
