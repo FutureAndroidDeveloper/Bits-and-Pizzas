@@ -20,7 +20,7 @@ public class Pizza {
         return name;
     }
 
-    
+
     public int getImageResourceId() {
         return imageResourceId;
     }
