@@ -3,17 +3,16 @@ package com.example.kirill.bitsandpizzas;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.ListFragment;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.TextView;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PastaFragment extends ListFragment {
+public class PastaFragment extends Fragment {
 
 
     public PastaFragment() {
@@ -25,11 +24,33 @@ public class PastaFragment extends ListFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(inflater.getContext(),
-                android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.pasta));
+        RecyclerView recyclerView = (RecyclerView) inflater.inflate(R.layout.fragment_pasta, container, false);
 
-        setListAdapter(adapter);
-        return super.onCreateView(inflater, container, savedInstanceState);
+        String[] pastaNames = new String[Pasta.pastas.length];
+        for (int i = 0; i < pastaNames.length; i++) {
+            pastaNames[i] = Pasta.pastas[i].getName();
+        }
+
+
+        String[] pastaPrices = new String[Pasta.pastas.length];
+        for (int i = 0; i < pastaPrices.length; i++) {
+            pastaPrices[i] = Pasta.pastas[i].getPrice();
+        }
+
+
+        int[] pastaImages = new int[Pasta.pastas.length];
+        for (int i = 0; i < pastaNames.length; i++) {
+            pastaImages[i] = Pasta.pastas[i].getImageResourceId();
+        }
+
+
+        PastaAdapter adapter = new PastaAdapter(pastaNames, pastaPrices, pastaImages);
+        recyclerView.setAdapter(adapter);
+
+        GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
+        recyclerView.setLayoutManager(layoutManager);
+
+        return recyclerView;
     }
 
 }
