@@ -20,7 +20,7 @@ public class PizzaDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_pizza_detail);
 
         //Set the toolbar as the activity's app bar
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_main);
         setSupportActionBar(toolbar);
 
         ActionBar actionBar = getSupportActionBar();
