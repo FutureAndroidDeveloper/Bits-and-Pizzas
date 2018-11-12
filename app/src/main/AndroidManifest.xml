@@ -19,10 +19,11 @@
         <activity
             android:name=".OrderActivity"
             android:label="@string/create_order"
-            android:parentActivityName=".MainActivity"></activity>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".PizzaDetailActivity"
-            android:parentActivityName=".MainActivity"></activity>
+            android:parentActivityName=".MainActivity" />
+        <activity android:name=".PastaDetailActivity"></activity>
     </application>
 
 </manifest>
