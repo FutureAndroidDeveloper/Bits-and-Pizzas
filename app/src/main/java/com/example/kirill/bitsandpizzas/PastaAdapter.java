@@ -13,6 +13,12 @@ public class PastaAdapter extends RecyclerView.Adapter<PastaAdapter.ViewHolder> 
     private String[] pastas;
     private String[] prices;
     private int[] imageIds;
+    private Listener listener;
+
+
+    interface Listener {
+        void onClick(int position);
+    }
 
 
     PastaAdapter(String[] pastas, String[] prices, int[] imageIds) {
@@ -21,10 +27,16 @@ public class PastaAdapter extends RecyclerView.Adapter<PastaAdapter.ViewHolder> 
         this.imageIds = imageIds;
     }
 
+
+    public void setListener(Listener listener) {
+        this.listener = listener;
+    }
+
     @Override
     public int getItemCount() {
         return pastas.length;
     }
+
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private CardView cardView;
@@ -52,9 +64,18 @@ public class PastaAdapter extends RecyclerView.Adapter<PastaAdapter.ViewHolder> 
 
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int i) {
         viewHolder.name.setText(pastas[i]);
         viewHolder.price.setText(prices[i]);
         viewHolder.image.setImageResource(imageIds[i]);
+
+        viewHolder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (listener != null) {
+                    listener.onClick(i);
+                }
+            }
+        });
     }
 }
